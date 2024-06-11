@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+</head>
+<body>
+
+<h2 id="question">¿Me perdonas por comerme toda la pizza?</h2>
+
+<button id="yesBtn" onclick="thankYou()">Sí</button>
+<button id="noBtn" onclick="moveButton()">No</button>
+
+<img id="pizza" src="pizza.png" style="display: none; animation: spin 4s linear infinite;">
+
+<script>
+function moveButton() {
+    var x = Math.floor(Math.random() * window.innerWidth);
+    var y = Math.floor(Math.random() * window.innerHeight);
+    document.getElementById("noBtn").style.left = x + 'px';
+    document.getElementById("noBtn").style.top = y + 'px';
+    document.getElementById("noBtn").style.position = 'absolute';
+}
+
+function thankYou() {
+    document.getElementById("question").innerHTML = "¡Gracias por perdonarme!";
+    document.getElementById("yesBtn").style.display = "none";
+    document.getElementById("noBtn").style.display = "none";
+    document.getElementById("pizza").style.display = "block";
+    confetti.start();
+}
+</script>
+
+</body>
+</html>
