@@ -2,34 +2,84 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3"></script>
+    <style>
+       body {
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 50px;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+}
+
+#pizza {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+    </style>
 </head>
 <body>
 
-<h2 id="question">¿Me perdonas por comerme toda la pizza?</h2>
-
-<button id="yesBtn" onclick="thankYou()">Sí</button>
-<button id="noBtn" onclick="moveButton()">No</button>
-
-<img id="pizza" src="pizza.png" style="display: none; animation: spin 4s linear infinite;">
-
-<script>
-function moveButton() {
-    var x = Math.floor(Math.random() * window.innerWidth);
-    var y = Math.floor(Math.random() * window.innerHeight);
-    document.getElementById("noBtn").style.left = x + 'px';
-    document.getElementById("noBtn").style.top = y + 'px';
-    document.getElementById("noBtn").style.position = 'absolute';
-}
-
-function thankYou() {
-    document.getElementById("question").innerHTML = "¡Gracias por perdonarme!";
-    document.getElementById("yesBtn").style.display = "none";
-    document.getElementById("noBtn").style.display = "none";
-    document.getElementById("pizza").style.display = "block";
-    confetti.start();
-}
-</script>
-
-</body>
+    <h2 id="question">¿Me perdonas por comerme toda la pizza?</h2>
+    
+    <button id="yesBtn" onclick="thankYou()">Sí</button>
+    <button id="noBtn" onclick="moveButton()">No</button>
+    
+    <p id="message"></p>
+    
+    <img id="pizza" src="pizza.png" style="display: none; animation: spin 4s linear infinite; width: 150px; height: auto;">
+    
+    <script>
+    var messages = ["¿En serio?", "Por favor amor", "Y si te doy miles de besos?", "Vamos, no seas así...", "¿Y si te compro una pizza con boneless?", "¿Y si te digo que los boneless son gratis?"];
+    var messageIndex = 0;
+    
+    function moveButton() {
+        var x = Math.floor(Math.random() * window.innerWidth);
+        var y = Math.floor(Math.random() * window.innerHeight);
+        document.getElementById("noBtn").style.left = x + 'px';
+        document.getElementById("noBtn").style.top = y + 'px';
+        document.getElementById("noBtn").style.position = 'absolute';
+    
+        document.getElementById("message").innerHTML = messages[messageIndex];
+        messageIndex = (messageIndex + 1) % messages.length;
+    }
+    
+    function thankYou() {
+        document.getElementById("question").innerHTML = "¡Gracias por perdonarme! Te ganaste una pizza con boneless gratis para ti mi amor ❤️";
+        document.getElementById("yesBtn").style.display = "none";
+        document.getElementById("noBtn").style.display = "none";
+        document.getElementById("message").style.display = "none";
+        document.getElementById("pizza").style.display = "block";
+        confetti();
+    }
+    </script>
+    
+    </body>
 </html>
