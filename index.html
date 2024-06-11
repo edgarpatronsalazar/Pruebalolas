@@ -61,15 +61,16 @@ button {
     var messageIndex = 0;
     
     function moveButton() {
-        var x = Math.floor(Math.random() * window.innerWidth);
-        var y = Math.floor(Math.random() * window.innerHeight);
-        document.getElementById("noBtn").style.left = x + 'px';
-        document.getElementById("noBtn").style.top = y + 'px';
-        document.getElementById("noBtn").style.position = 'absolute';
-    
-        document.getElementById("message").innerHTML = messages[messageIndex];
-        messageIndex = (messageIndex + 1) % messages.length;
-    }
+    var btn = document.getElementById("noBtn");
+    var x = Math.floor(Math.random() * (window.innerWidth - btn.offsetWidth));
+    var y = Math.floor(Math.random() * (window.innerHeight - btn.offsetHeight));
+    btn.style.left = x + 'px';
+    btn.style.top = y + 'px';
+    btn.style.position = 'absolute';
+
+    document.getElementById("message").innerHTML = messages[messageIndex];
+    messageIndex = (messageIndex + 1) % messages.length;
+}
     
     function thankYou() {
         document.getElementById("question").innerHTML = "¡Gracias por perdonarme! Te ganaste una pizza con boneless gratis para ti mi amor ❤️";
